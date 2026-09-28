@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Misión Forense: Balística y Primer Responsable</title>
+    <meta name="description" content="Aprende, investiga y supera cada desafío en esta plataforma interactiva sobre Balística Forense y Primer Responsable.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css?v=3">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎯</text></svg>">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Navegación -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-brand">
+            <h1>Balística Forense</h1>
+        </div>
+        <div class="nav-right">
+            <ul class="nav-links" id="nav-links">
+                <!-- Los enlaces se generan dinámicamente desde JS dependiendo de la sesión -->
+            </ul>
+            <button class="theme-toggle btn-icon" id="theme-toggle" aria-label="Cambiar tema" title="Cambiar a modo oscuro">
+                <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+            </button>
+            <button class="nav-toggle btn-icon" id="nav-toggle" aria-label="Abrir menú">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Indicador de Carga -->
+    <div id="loader" class="loader-container hidden">
+        <div class="spinner"></div>
+        <p>Cargando...</p>
+    </div>
+
+    <!-- Contenedor Principal (SPA) -->
+    <main id="app-content">
+        
+        <!-- SECCIÓN: PORTADA INSTITUCIONAL -->
+        <section id="sec-portada" class="section active">
+            <div class="portada-container">
+                <div class="portada-content">
+                    <div class="portada-logo">
+                        <img src="assets/images/logoInstitucion.jpeg" alt="Logo Institución" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; box-shadow: 0 4px 10px rgba(0,0,0,0.5); border: 3px solid rgba(255,255,255,0.2);">
+                    </div>
+                    <h2>Escuela Militar de Suboficiales<br>Sargento Inocencio Chincá</h2>
+                    <h1>BALÍSTICA FORENSE</h1>
+                    <p class="portada-subtitle">Proyecto Educativo</p>
+                    
+                    <div class="portada-authors">
+                        <p>Desarrollado por:</p>
+                        <h3>Cometa Cruz Santiago</h3>
+                        <h3>Aragón Guapacho Jair Andrés</h3>
+                        <h3>Avendaño Rojas Deisy</h3>
+                        <h3>Correa Yáñez Juan</h3>
+                        <h3>Quintana Buitrago Carlos</h3>
+                    </div>
+                    
+                    <button class="btn btn-primary btn-animate btn-start" onclick="app.navigate('inicio')">
+                        Ingresar a la Plataforma <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN: INICIO -->
+        <section id="sec-inicio" class="section hidden">
+            <div class="hero">
+                <h2>MISIÓN FORENSE</h2>
+                <h3>Balística y Primer Responsable</h3>
+                <p>Aprende, investiga y supera cada desafío.</p>
+                <div class="hero-buttons">
+                    <button class="btn btn-primary" onclick="app.navigate('login')">Iniciar Sesión</button>
+                    <button class="btn btn-secondary" onclick="app.navigate('register')">Registrarse</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN: LOGIN -->
+        <section id="sec-login" class="section hidden">
+            <div class="auth-wrapper">
+                <div class="auth-visual">
+                    <div class="glass-panel">
+                        <h2>La evidencia cuenta la historia.</h2>
+                        <p>Accede a tu plataforma de Balística Forense y continúa tu capacitación técnica e investigativa.</p>
+                    </div>
+                </div>
+                <div class="auth-card">
+                    <div class="auth-header">
+                        <h2>Bienvenido de nuevo</h2>
+                        <p>Ingresa tus credenciales para continuar</p>
+                    </div>
+                    <form id="form-login">
+                        <div class="input-group">
+                            <label for="login-email">Correo electrónico</label>
+                            <div class="input-wrapper">
+                                <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                                <input type="email" id="login-email" placeholder="ejemplo@correo.com" required>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <label for="login-password">Contraseña</label>
+                            <div class="input-wrapper">
+                                <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                                <input type="password" id="login-password" placeholder="••••••••" required>
+                            </div>
+                        </div>
+                        <p id="login-error" class="error-message"></p>
+                        <button type="submit" class="btn btn-primary btn-block btn-animate">Ingresar al Sistema</button>
+                    </form>
+                    <p class="auth-link">¿No tienes cuenta? <a href="#register">Regístrate ahora</a></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN: REGISTRO -->
+        <section id="sec-register" class="section hidden">
+            <div class="auth-wrapper reverse">
+                <div class="auth-visual register-visual">
+                    <div class="glass-panel">
+                        <h2>Únete a la investigación.</h2>
+                        <p>Fórmate como primer responsable y domina los fundamentos de la balística forense.</p>
+                    </div>
+                </div>
+                <div class="auth-card">
+                    <div class="auth-header">
+                        <h2>Crear Cuenta</h2>
+                        <p>Completa tus datos para empezar</p>
+                    </div>
+                    <form id="form-register">
+                        <div class="input-group">
+                            <label for="reg-nombre">Nombre completo</label>
+                            <div class="input-wrapper">
+                                <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                                <input type="text" id="reg-nombre" placeholder="Juan Pérez" required>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <label for="reg-email">Correo electrónico</label>
+                            <div class="input-wrapper">
+                                <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                                <input type="email" id="reg-email" placeholder="ejemplo@correo.com" required>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <label for="reg-password">Contraseña</label>
+                            <div class="input-wrapper">
+                                <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                                <input type="password" id="reg-password" placeholder="••••••••" required minlength="6">
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <label for="reg-confirm">Confirmar contraseña</label>
+                            <div class="input-wrapper">
+                                <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                                <input type="password" id="reg-confirm" placeholder="••••••••" required minlength="6">
+                            </div>
+                        </div>
+                        <p id="reg-error" class="error-message"></p>
+                        <button type="submit" class="btn btn-primary btn-block btn-animate">Registrarse</button>
+                    </form>
+                    <p class="auth-link">¿Ya tienes cuenta? <a href="#login">Inicia sesión</a></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN: DASHBOARD (HUB PRINCIPAL) -->
+        <section id="sec-dashboard" class="section hidden">
+            <div class="dash-hero">
+                <h2>MISIÓN FORENSE</h2>
+                <p>Balística y Primer Responsable</p>
+            </div>
+            
+            <div class="user-hud">
+                <div class="hud-profile">
+                    <div class="hud-avatar"><i class="fa-solid fa-user-shield"></i></div>
+                    <div class="hud-info">
+                        <h3 id="dash-name">Agente</h3>
+                        <p>Nivel <span id="dash-level">1</span></p>
+                    </div>
+                </div>
+                <div class="hud-stats">
+                    <div class="hud-stat">
+                        <span class="hud-icon" style="color:var(--accent)"><i class="fa-solid fa-star"></i></span>
+                        <div class="hud-text">
+                            <span>Experiencia</span>
+                            <strong id="dash-xp">0 XP</strong>
+                        </div>
+                    </div>
+                    <div class="hud-stat">
+                        <span class="hud-icon" style="color:var(--danger)"><i class="fa-solid fa-fire"></i></span>
+                        <div class="hud-text">
+                            <span>Racha Mayor</span>
+                            <strong id="dash-streak">0</strong>
+                        </div>
+                    </div>
+                </div>
+                <div class="hud-progress">
+                    <div class="hud-progress-labels">
+                        <span>Progreso Misiones</span>
+                        <span id="dash-progress-text">0%</span>
+                    </div>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar" id="dash-progress-bar" style="width: 0%;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-actions">
+                <button class="btn btn-primary" onclick="app.navigate('misiones')"><i class="fa-solid fa-map"></i> Mapa de Misiones</button>
+                <button class="btn btn-outline" onclick="app.navigate('ranking')"><i class="fa-solid fa-trophy"></i> Ranking</button>
+                <button class="btn btn-outline" onclick="app.navigate('logros')"><i class="fa-solid fa-medal"></i> Logros</button>
+                <button class="btn btn-outline" onclick="app.navigate('perfil')"><i class="fa-solid fa-user"></i> Perfil</button>
+            </div>
+        </section>
+
+        <!-- SECCIÓN: MAPA DE MISIONES -->
+        <section id="sec-misiones" class="section hidden">
+            <div class="section-header">
+                <h2 class="section-title">Mapa de Misiones</h2>
+                <button class="btn btn-outline btn-sm" onclick="app.navigate('dashboard')">Volver</button>
+            </div>
+            
+            <div class="mission-map" id="mission-map-container">
+                <!-- Se llenan con JS -->
+            </div>
+        </section>
+
+        <!-- SECCIÓN: MISIÓN - APRENDER (Fase 1 y 2) -->
+        <section id="sec-mision-aprender" class="section hidden">
+            <div class="section-header">
+                <h2 id="learn-title" class="section-title">Misión</h2>
+                <button class="btn btn-outline btn-sm" onclick="app.navigate('misiones')">Abandonar</button>
+            </div>
+            
+            <div class="learn-container" id="learn-content">
+                <!-- El contenido educativo se inyecta aquí desde JS -->
+            </div>
+
+            <div class="learn-action text-center mt-4">
+                <h3 class="mb-2">¿Listo para el desafío?</h3>
+                <button class="btn btn-primary btn-block btn-animate" onclick="juego.iniciarQuiz()"><i class="fa-solid fa-gamepad"></i> COMENZAR MISIÓN</button>
+            </div>
+        </section>
+
+        <!-- SECCIÓN: MISIÓN - QUIZ (Fase 3) -->
+        <section id="sec-mision-quiz" class="section hidden">
+            <div class="quiz-header">
+                <div>
+                    <h3 id="quiz-title">Misión 1</h3>
+                    <div class="quiz-progress">
+                        <span id="quiz-counter">Pregunta 1/5</span>
+                    </div>
+                </div>
+                <div class="quiz-streak hidden" id="quiz-streak-container">
+                    <i class="fa-solid fa-fire text-danger"></i> Racha: <span id="quiz-streak">0</span>
+                </div>
+            </div>
+            
+            <div class="quiz-progress-bar-container">
+                <div class="progress-bar" id="quiz-progress-bar" style="width: 0%;"></div>
+            </div>
+
+            <div class="quiz-container mt-2">
+                <p id="quiz-question" class="question-text">Cargando pregunta...</p>
+                <div class="options-container" id="quiz-options">
+                    <!-- Opciones se inyectan acá -->
+                </div>
+            </div>
+
+            <div id="quiz-feedback" class="quiz-feedback hidden">
+                <div class="feedback-icon" id="feedback-icon"><i class="fa-solid fa-circle-check"></i></div>
+                <div class="feedback-content">
+                    <h3 id="feedback-title">¡CORRECTO!</h3>
+                    <div id="feedback-xp" class="feedback-xp">+100 XP</div>
+                    <p id="feedback-desc"></p>
+                    <button class="btn btn-primary mt-2 btn-animate" id="btn-next-question">CONTINUAR</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN: RESULTADOS (Fase 4 y 5) -->
+        <section id="sec-juego-resultado" class="section hidden">
+            <div class="result-card">
+                <h2 id="res-title"><i class="fa-solid fa-trophy"></i> ¡Misión Completada!</h2>
+                <div class="res-stats">
+                    <div class="res-item">
+                        <span class="res-label">XP Ganada</span>
+                        <span class="res-value success-text" id="res-xp">+0</span>
+                    </div>
+                    <div class="res-item">
+                        <span class="res-label">Correctas</span>
+                        <span class="res-value" id="res-corrects">0/0</span>
+                    </div>
+                    <div class="res-item">
+                        <span class="res-label">Precisión</span>
+                        <span class="res-value" id="res-percent">0%</span>
+                    </div>
+                </div>
+                <p id="res-message" class="res-msg"></p>
+                
+                <div id="res-unlock" class="res-unlock hidden">
+                    <span class="unlock-icon"><i class="fa-solid fa-lock-open"></i></span>
+                    <p>¡Siguiente misión desbloqueada!</p>
+                </div>
+
+                <div class="res-buttons mt-4">
+                    <button class="btn btn-primary" onclick="app.navigate('misiones')">Volver al Mapa</button>
+                    <button class="btn btn-secondary" onclick="app.navigate('dashboard')">Ir al Hub</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN: LOGROS -->
+        <section id="sec-logros" class="section hidden">
+            <div class="section-header">
+                <h2 class="section-title"><i class="fa-solid fa-medal" style="color:var(--accent)"></i> Mis Logros</h2>
+                <button class="btn btn-outline btn-sm" onclick="app.navigate('dashboard')">Volver</button>
+            </div>
+            
+            <div class="achievements-grid" id="achievements-container">
+                <!-- Llenado por JS -->
+            </div>
+        </section>
+
+        <!-- SECCIÓN: RANKING -->
+        <section id="sec-ranking" class="section hidden">
+            <h2 class="section-title">Ranking General</h2>
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Posición</th>
+                            <th>Usuario</th>
+                            <th>Nivel</th>
+                            <th>Puntaje</th>
+                        </tr>
+                    </thead>
+                    <tbody id="ranking-body">
+                        <!-- Llenado por JS -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- SECCIÓN: PERFIL -->
+        <section id="sec-perfil" class="section hidden">
+            <h2 class="section-title">Mi Perfil</h2>
+            <div class="profile-card">
+                <div class="profile-header">
+                    <div class="profile-avatar">U</div>
+                    <div>
+                        <h3 id="prof-name">Cargando...</h3>
+                        <p id="prof-email">cargando...</p>
+                    </div>
+                </div>
+                <div class="profile-details">
+                    <div class="detail-item">
+                        <span class="detail-label">Puntaje Total</span>
+                        <span class="detail-value" id="prof-score">0</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Nivel Actual</span>
+                        <span class="detail-value" id="prof-level">1</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Preguntas Respondidas</span>
+                        <span class="detail-value" id="prof-answered">0</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Respuestas Correctas</span>
+                        <span class="detail-value" id="prof-corrects">0</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Porcentaje de Aciertos</span>
+                        <span class="detail-value" id="prof-percent">0%</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Niveles Completados</span>
+                        <span class="detail-value" id="prof-completed">0</span>
+                    </div>
+                </div>
+                <div class="profile-progress">
+                    <h4>Progreso hacia el Nivel 5</h4>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar" id="prof-progress-bar" style="width: 0%;"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN: BIBLIOGRAFÍA -->
+        <section id="sec-bibliografia" class="section hidden">
+            <div class="section-header">
+                <h2 class="section-title"><i class="fa-solid fa-book" style="color:var(--primary)"></i> Referencias y Bibliografía</h2>
+                <button class="btn btn-outline btn-sm" onclick="app.navigate('dashboard')">Volver</button>
+            </div>
+            <div class="card p-4">
+                <p>Toda la información presentada en esta plataforma ha sido recopilada y fundamentada en las siguientes fuentes y manuales de criminalística:</p>
+                <ul class="bib-list mt-3">
+                    <li><strong>Manual de Criminalística y Ciencias Forenses:</strong> Protocolos de actuación del Primer Responsable y preservación del lugar de los hechos.</li>
+                    <li><strong>Tratado de Balística Forense:</strong> Estudio de las armas de fuego, su clasificación, balística interior, exterior y de efectos.</li>
+                    <li><strong>Protocolo de Cadena de Custodia:</strong> Manual de procedimientos para la recolección, embalaje y traslado de indicios y elementos materiales probatorios.</li>
+                </ul>
+                <p class="mt-3 text-muted"><em>Nota: Esta plataforma tiene fines exclusivamente académicos y formativos.</em></p>
+            </div>
+        </section>
+
+        <!-- SECCIÓN: HISTORIAL -->
+        <section id="sec-historial" class="section hidden">
+            <h2 class="section-title">Historial de Resultados</h2>
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Juego</th>
+                            <th>Nivel</th>
+                            <th>Puntaje</th>
+                            <th>Porcentaje</th>
+                        </tr>
+                    </thead>
+                    <tbody id="historial-body">
+                        <!-- Llenado por JS -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- SECCIÓN: ADMINISTRADOR -->
+        <section id="sec-admin" class="section hidden">
+            <h2 class="section-title">Panel de Administrador</h2>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-info">
+                        <h4>Total Usuarios</h4>
+                        <p id="admin-total-users">0</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-info">
+                        <h4>Mejor Puntuación</h4>
+                        <p id="admin-best-score">0</p>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Gestión de Usuarios</h3>
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Usuario</th>
+                            <th>Email</th>
+                            <th>Puntaje</th>
+                            <th>Nivel</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="admin-users-body">
+                        <!-- Llenado por JS -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        <!-- SECCIÓN: ZONA INTERACTIVA -->
+        <section id="sec-zona-interactiva" class="section hidden">
+            <div class="dash-hero interactiva-hero" style="background: linear-gradient(to bottom right, var(--bg-card), var(--bg-main));">
+                <h2>ZONA INTERACTIVA</h2>
+                <p>Pon a prueba tus habilidades como primer responsable</p>
+                <div class="sound-toggle-container" style="display: flex; gap: 1rem; justify-content: center; margin-top: 1rem;">
+                    <button id="btn-sound-toggle" class="btn btn-outline btn-sm" onclick="interactivos.toggleSound()">
+                        <i class="fa-solid fa-volume-xmark"></i> Sonido: OFF
+                    </button>
+                    <button class="btn btn-danger btn-sm" onclick="interactivos.resetProgress()">
+                        <i class="fa-solid fa-trash-can"></i> Reiniciar progreso
+                    </button>
+                </div>
+            </div>
+
+            <!-- Menú Principal de Juegos -->
+            <div id="interactive-menu">
+                <p class="text-center mb-4 interactiva-desc" style="max-width: 800px; margin: 2rem auto; font-size: 1.1rem; color: var(--text-muted);">
+                    Explora diferentes situaciones relacionadas con la protección de una escena, identificación de evidencias y correcta manipulación de elementos. Completa los desafíos para demostrar tus habilidades.
+                </p>
+                <div class="interactive-games-grid" id="interactive-games-container">
+                    <!-- Tarjetas de juegos inyectadas por JS -->
+                </div>
+            </div>
+
+            <!-- Contenedor del Juego Activo -->
+            <div id="interactive-game-area" class="hidden">
+                <div class="game-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; background: var(--bg-card); padding: 1rem; border-radius: var(--border-radius); border: 1px solid var(--border-color); box-shadow: var(--shadow-sm);">
+                    <button class="btn btn-outline btn-sm" onclick="interactivos.volverAlMenu()">
+                        <i class="fa-solid fa-arrow-left"></i> Volver
+                    </button>
+                    <div class="game-stats" style="display: flex; gap: 1.5rem; font-weight: 600; font-size: 1.1rem;">
+                        <span class="game-stat"><i class="fa-solid fa-trophy" style="color:var(--accent)"></i> <span id="game-score">0</span></span>
+                        <span class="game-stat"><i class="fa-solid fa-clock" style="color:var(--primary)"></i> <span id="game-time">00:00</span></span>
+                        <span id="game-extra-stat" class="game-stat" style="color:var(--secondary)"></span>
+                    </div>
+                </div>
+
+                <div id="game-container" class="game-container">
+                    <!-- El juego actual se renderiza aquí -->
+                </div>
+                
+                <!-- Feedback Overlay -->
+                <div id="game-feedback" class="game-feedback-overlay hidden">
+                    <div class="feedback-card">
+                        <div id="feedback-icon-large" class="feedback-icon-large"></div>
+                        <h3 id="feedback-title-large"></h3>
+                        <p id="feedback-desc-large"></p>
+                        <p id="feedback-points" class="feedback-points"></p>
+                        <div id="feedback-actions" class="hidden mt-3" style="display: flex; gap: 1rem; justify-content: center;">
+                            <button id="btn-feedback-retry" class="btn btn-primary"><i class="fa-solid fa-rotate-right"></i> Jugar de nuevo</button>
+                            <button id="btn-feedback-cancel" class="btn btn-outline"><i class="fa-solid fa-xmark"></i> Cancelar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pantalla Final: Misión Completada -->
+            <div id="interactive-final-screen" class="hidden">
+                <div class="final-card text-center" style="max-width: 600px; margin: 0 auto; background: var(--bg-card); padding: 3rem; border-radius: var(--border-radius); border: 1px solid var(--border-color); box-shadow: var(--shadow-xl);">
+                    <div class="final-celebration" style="font-size: 5rem; margin-bottom: 1rem; animation: bounce 1s infinite alternate;">🏆</div>
+                    <h2 style="font-size: 2.5rem; color: var(--text-main); margin-bottom: 0.5rem;">MISIÓN COMPLETADA</h2>
+                    <h3 style="color: var(--primary); margin-bottom: 2rem;">Primer Responsable — Nivel Final</h3>
+                    
+                    <div class="final-stats-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem;">
+                        <div class="final-stat-item" style="background: var(--bg-main); padding: 1.5rem; border-radius: 12px; border: 1px solid var(--border-color);">
+                            <span class="label" style="display: block; font-size: 0.9rem; color: var(--text-muted); text-transform: uppercase;">Puntuación</span>
+                            <strong id="final-score" style="font-size: 2rem; color: var(--accent);">0</strong>
+                        </div>
+                        <div class="final-stat-item" style="background: var(--bg-main); padding: 1.5rem; border-radius: 12px; border: 1px solid var(--border-color);">
+                            <span class="label" style="display: block; font-size: 0.9rem; color: var(--text-muted); text-transform: uppercase;">Tiempo total</span>
+                            <strong id="final-time" style="font-size: 2rem; color: var(--primary);">00:00</strong>
+                        </div>
+                        <div class="final-stat-item" style="background: var(--bg-main); padding: 1.5rem; border-radius: 12px; border: 1px solid var(--border-color);">
+                            <span class="label" style="display: block; font-size: 0.9rem; color: var(--text-muted); text-transform: uppercase;">Precisión</span>
+                            <strong id="final-accuracy" style="font-size: 2rem; color: var(--secondary);">0%</strong>
+                        </div>
+                        <div class="final-stat-item highlight" style="background: linear-gradient(135deg, var(--primary), var(--primary-dark)); padding: 1.5rem; border-radius: 12px; color: white;">
+                            <span class="label" style="display: block; font-size: 0.9rem; opacity: 0.9; text-transform: uppercase;">Nivel</span>
+                            <strong id="final-level" style="font-size: 1.5rem; display: block; margin-top: 0.5rem;">INVESTIGADOR</strong>
+                        </div>
+                    </div>
+                    
+                    <div class="final-summary" style="text-align: left; background: var(--bg-main); padding: 1.5rem; border-radius: 12px; border: 1px solid var(--border-color); margin-bottom: 2rem;">
+                        <h4 style="margin-bottom: 1rem; color: var(--text-main);"><i class="fa-solid fa-list-check" style="color:var(--primary)"></i> Resumen de Misiones</h4>
+                        <ul id="final-summary-list" style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.75rem;">
+                            <!-- Inyectado por JS -->
+                        </ul>
+                    </div>
+                    
+                    <div class="final-actions" style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                        <button class="btn btn-primary" onclick="interactivos.reiniciarTodos()"><i class="fa-solid fa-rotate-right"></i> Jugar nuevamente</button>
+                        <button class="btn btn-outline" onclick="app.navigate('misiones')"><i class="fa-solid fa-book"></i> Volver al contenido</button>
+                        <button class="btn btn-secondary" onclick="app.navigate('dashboard')"><i class="fa-solid fa-house"></i> Volver al inicio</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- =========================================
+             MODALES DE INTRODUCCIÓN (NUEVOS)
+        ========================================= -->
+        <!-- Modal de Bienvenida Global -->
+        <div id="modal-intro-global" class="modal-overlay hidden">
+            <div class="modal-card">
+                <div class="modal-header">
+                    <h2><i class="fa-solid fa-book-open"></i> Introducción a la Balística</h2>
+                </div>
+                <div class="modal-body">
+                    <p>Bienvenido a la plataforma. Antes de comenzar, es importante que conozcas estos conceptos fundamentales:</p>
+                    
+                    <div class="info-block">
+                        <h4>¿Qué es la Balística Forense?</h4>
+                        <p>Es la disciplina científica que analiza las armas de fuego, las municiones empleadas y los efectos que producen al ser disparadas, con el fin de auxiliar a la justicia en la investigación de delitos.</p>
+                    </div>
+                    
+                    <div class="info-block mt-3">
+                        <h4>El Primer Responsable</h4>
+                        <p>Es la primera autoridad que llega al lugar de los hechos. Su deber primordial es proteger la vida, asegurar la escena y evitar que las evidencias sean contaminadas o alteradas.</p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary btn-block btn-animate" onclick="document.getElementById('modal-intro-global').classList.add('hidden')">Comprendido, ¡a jugar!</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pantalla de Briefing para Minijuegos -->
+        <div id="modal-briefing-juego" class="modal-overlay hidden">
+            <div class="modal-card">
+                <div class="modal-header">
+                    <h2 id="briefing-title">Misión</h2>
+                </div>
+                <div class="modal-body">
+                    <div id="briefing-content">
+                        <!-- El contenido se inyectará dinámicamente -->
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary btn-block btn-animate" id="btn-start-minigame">INICIAR MISIÓN</button>
+                    <button class="btn btn-outline btn-block" onclick="document.getElementById('modal-briefing-juego').classList.add('hidden')">Cancelar</button>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+
+    </main>
+
+    <!-- Notificación Toast -->
+    <div id="toast" class="toast hidden"></div>
+
+    <!-- Dependencias y Lógica Principal -->
+    <script src="interactivos.js?v=2"></script>
+    <script src="interactivos_extra.js?v=2"></script>
+    <script type="module" src="script.js?v=2"></script>
+</body>
+</html>

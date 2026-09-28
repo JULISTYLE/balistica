@@ -546,9 +546,12 @@ const interactivos = {
             if(this.currentGame === 3 && this.currentScore > 2000) this.currentScore = 2000;
 
             // Guardar el progreso del usuario
+            if (!this.state[`j${this.currentGame}`]) {
+                this.state[`j${this.currentGame}`] = { completed: false, score: 0, time: 0 };
+            }
             const st = this.state[`j${this.currentGame}`];
             st.completed = true;
-            if (this.currentScore > st.score) {
+            if (this.currentScore > (st.score || 0)) {
                 st.score = this.currentScore;
                 st.time = this.currentTime;
             }

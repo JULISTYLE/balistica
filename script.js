@@ -20,20 +20,11 @@ import {
     where,
     deleteDoc
 } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+import { firebaseConfig } from "./firebase-config.js";
 
 // ==========================================
-// CONFIGURACIÓN FIREBASE
+// INICIALIZACIÓN FIREBASE
 // ==========================================
-const firebaseConfig = {
-  apiKey: "AIzaSyDBw4f59W7E4H-LSnrzZlhxk24_HWkpyNE",
-  authDomain: "balisticaforense-2770a.firebaseapp.com",
-  projectId: "balisticaforense-2770a",
-  storageBucket: "balisticaforense-2770a.firebasestorage.app",
-  messagingSenderId: "1093018109964",
-  appId: "1:1093018109964:web:e9abcf0cf33de007c44629"
-};
-
-// Inicialización de Firebase
 const firebaseApp = initializeApp(firebaseConfig);
 const auth = getAuth(firebaseApp);
 const db = getFirestore(firebaseApp);

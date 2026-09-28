@@ -1,0 +1,11 @@
+# Credenciales locales sensibles (No subir a GitHub)
+firebase-config.js
+.env
+.env.local
+.env.*.local
+
+# Archivos del sistema y editores
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
